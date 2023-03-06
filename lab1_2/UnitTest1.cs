@@ -1,17 +1,14 @@
-namespace lab1_2test
+namespace TestProject1
 {
     [TestClass]
     public class UnitTest1
     {
         [TestMethod]
-        public void TestY()
+        public void TestMethod1()
         {
             double x = 0;
-            double expectedY = 10;
-
-            double actualY = Math.Pow(x, 3) - 4 * Math.Pow(x, 2) - 5 * x + 9 + Math.Cos(x);
-
-            Assert.AreEqual(expectedY, actualY);
+            double result = lab1_2.Program.Example(x);
+            Assert.AreEqual(10, result);
         }
     }
 }
