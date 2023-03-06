@@ -1,15 +1,24 @@
-﻿using System;
+using System;
 
-namespace MyProgram
+namespace lab1_2
 {
-    class Program
+    public class Program
     {
+        static public double Example(double x)
+        {
+
+            double y = Math.Pow(x, 3) - 4 * Math.Pow(x, 2) - 5 * x + 9 + Math.Cos(x);
+            Console.WriteLine(x.ToString() + "^3 - 4 * " + x.ToString() + "^2 - 5 * " + x.ToString() + " + 9 + cos(" + x.ToString() + ")" + " = " + y.ToString());
+            return y;
+        }
         static void Main(string[] args)
         {
-            double x = 0; // вхідне значення х
-            double y = Math.Pow(x, 3) - 4 * Math.Pow(x, 2) - 5 * x + 9 + Math.Cos(x); // розрахунок значення y
+            Console.WriteLine("Enter x:");
 
-            Console.WriteLine($"y = {y}"); // виведення результату на консоль
+            double x = double.Parse(Console.ReadLine());
+            Example(x);
+
+           
         }
     }
 }
