@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ConsoleTables;
 
 namespace lab4_1_TCPP
 {
@@ -30,6 +28,7 @@ namespace lab4_1_TCPP
             Books.Add(new Book() { Author = "Fyodor Dostoevsky", Title = "Crime and Punishment", Publisher = "Dostoevsky's Journal", Year = 1866 });
             Books.Add(new Book() { Author = "Charles Dickens", Title = "A Tale of Two Cities", Publisher = "Chapman & Hall", Year = 1859 });
             Books.Add(new Book() { Author = "Jane Austen", Title = "Pride and Prejudice", Publisher = "John Murray", Year = 1813 });
+            Books.Add(new Book() { Author = "George Orwell", Title = "Animal Farm: A Fairy Story", Publisher = "Secker & Warburg", Year = 1945 });
         }
 
         public void SortByAuthor()
@@ -52,10 +51,13 @@ namespace lab4_1_TCPP
                 }
             }
 
+            var table = new ConsoleTable("Видавництво", "Кількість книг");
             foreach (var publisher in publishers)
             {
-                Console.WriteLine("{0}: {1}", publisher.Key, publisher.Value);
+                table.AddRow(publisher.Key, publisher.Value);
             }
+
+            Console.WriteLine(table.ToString());
         }
     }
 
@@ -72,14 +74,13 @@ namespace lab4_1_TCPP
             library.CountBooksByPublisher();
 
             // Display the books in a table
-            Console.WriteLine("-----------------------------------------------------------------");
-            Console.WriteLine("|    Автор    |        Назва книги        |  Видавництво  | Рік |");
-            Console.WriteLine("-----------------------------------------------------------------");
+            var table = new ConsoleTable("Автор", "Назва книги", "Видавництво", "Рік");
             foreach (Book book in library.Books)
             {
-                Console.WriteLine("| {0} | {1} | {2} | {3} |", book.Author, book.Title, book.Publisher, book.Year);
+                table.AddRow(book.Author, book.Title, book.Publisher, book.Year);
             }
-            Console.WriteLine("-----------------------------------------------------------------");
+
+            Console.WriteLine(table.ToString());
         }
     }
 }
