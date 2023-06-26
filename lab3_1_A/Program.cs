@@ -1,50 +1,42 @@
 using System;
 
-namespace lab3_1
+class Program
 {
-    class Program
+    static void Main()
     {
-        static void Main(string[] args)
+        // Введення текстового рядка з клавіатури
+        Console.WriteLine("Введіть текстовий рядок:");
+        string text = Console.ReadLine();
+
+        // Підрахунок кількості великих літер у тексті
+        int uppercaseCount = 0;
+        foreach (char c in text)
         {
-            Console.Write("Enter text: ");
-            string text = Console.ReadLine();
-            int count = 0;
-
-            for (int i = 0; i < text.Length; i++)
+            if (char.IsUpper(c))
             {
-                if (Char.IsUpper(text[i]))
-                {
-                    count++;
-                }
+                uppercaseCount++;
             }
+        }
+        Console.WriteLine("Кількість великих літер у тексті: {0}", uppercaseCount);
 
-            Console.WriteLine("Count big words: {0}", count);
+        // Знаходження слів з найменшою кількістю літер
+        string[] words = text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
-            // Розділяємо текст на слова
-            string[] words = text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-
-            // Знаходимо мінімальну кількість літер серед усіх слів
-            int minLetters = int.MaxValue;
-            foreach (string word in words)
+        int minWordLength = int.MaxValue;
+        foreach (string word in words)
+        {
+            if (word.Length < minWordLength)
             {
-                if (word.Length < minLetters)
-                {
-                    minLetters = word.Length;
-                }
+                minWordLength = word.Length;
             }
-
-            Console.WriteLine("Words with the minimum number of letters:");
-
-            // Виводимо на екран всі слова, які мають мінімальну кількість літер
-            foreach (string word in words)
+        }
+        Console.WriteLine("Слова з найменшою кількістю літер:");
+        foreach (string word in words)
+        {
+            if (word.Length == minWordLength)
             {
-                if (word.Length == minLetters)
-                {
-                    Console.WriteLine(word);
-                }
+                Console.WriteLine(word);
             }
-
-            Console.ReadKey();
         }
     }
 }
