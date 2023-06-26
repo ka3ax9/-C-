@@ -1,27 +1,44 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace lab3_3
+class Program
 {
-    class Program
+    static void Main()
     {
-        static void Main(string[] args)
-        {
-         
-            string inputPath = @"C:\Users\zenka\Documents\My_input_file\input.txt";
+        string inputFileName = "input.txt";
+        string outputFileName = "output.txt";
 
-            
-            string input = File.ReadAllText(inputPath);
+        // Читання тексту з вхідного файлу
+        string inputText = File.ReadAllText(inputFileName);
 
-            
-            string output = Regex.Replace(input, @"\d+", "");
+        // Видалення слів, що містять латинські літери
+        string textWithoutLatinWords = RemoveLatinWords(inputText);
 
-            
-            string outputPath = @"C:\Users\zenka\Documents\My_input_file\output.txt";
+        // Видалення чисел з тексту
+        string textWithoutNumbers = RemoveNumbers(textWithoutLatinWords);
 
-           
-            File.WriteAllText(outputPath, output);
-        }
+        // Запис результату в вихідний файл
+        File.WriteAllText(outputFileName, textWithoutNumbers);
+
+        Console.WriteLine("Результати були записані у файл {0}.", outputFileName);
+    }
+
+    static string RemoveLatinWords(string inputText)
+    {
+        // Використовуємо регулярний вираз для знаходження слів, що містять латинські літери
+        string pattern = @"\b\w*[a-zA-Z]+\w*\b";
+        string textWithoutLatinWords = Regex.Replace(inputText, pattern, string.Empty);
+
+        return textWithoutLatinWords;
+    }
+
+    static string RemoveNumbers(string inputText)
+    {
+        // Використовуємо регулярний вираз для знаходження чисел
+        string pattern = @"\b\d+\b";
+        string textWithoutNumbers = Regex.Replace(inputText, pattern, string.Empty);
+
+        return textWithoutNumbers;
     }
 }
