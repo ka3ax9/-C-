@@ -1,0 +1,10 @@
+City A;Address A;Chief A;5;District 1
+City B;Address B;Chief B;3;District 2
+City C;Address C;Chief C;7;District 1
+City D;Address D;Chief D;2;District 3
+City E;Address E;Chief E;4;District 2
+City G;Address G;Chief G;3;District 3
+City F;Address F;Chief F;6;District 1
+City I;Address I;Chief I;4;District 1
+City H;Address H;Chief H;5;District 2
+City J;Address J;Chief J;2;District 3
